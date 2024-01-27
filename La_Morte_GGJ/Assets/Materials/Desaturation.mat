@@ -94,7 +94,7 @@ Material:
     - _ID: 1
     - _PixelSize: 5
     - _PixelatedAmount: 10
-    - _PixelationAmount: 10
+    - _PixelationAmount: 20
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
