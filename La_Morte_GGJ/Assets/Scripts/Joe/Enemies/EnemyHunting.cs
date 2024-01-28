@@ -7,7 +7,7 @@ public class EnemyHunting : MonoBehaviour
     [SerializeField] private float movementSpeed;
     [SerializeField] private float rotationSpeed;
 
-    private Transform targetTransform;
+    public Transform targetTransform;
 
 
     // Update is called once per frame
@@ -15,7 +15,8 @@ public class EnemyHunting : MonoBehaviour
     {
         if (targetTransform != null)
         {
-            transform.position = Vector3.MoveTowards(transform.position, targetTransform.position, movementSpeed * Time.deltaTime);
+            if (Vector3.Distance(transform.position, targetTransform.position) > 2)
+                transform.position = Vector3.MoveTowards(transform.position, targetTransform.position, movementSpeed * Time.deltaTime);
 
             // Get the direction from the sprite to the target
             Vector3 direction = targetTransform.position - transform.position;
@@ -29,12 +30,10 @@ public class EnemyHunting : MonoBehaviour
                 // Smoothly rotate the sprite to face the target
                 transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, Time.deltaTime * 5f);
             }
-        }
-    }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-            targetTransform = other.transform;
+            float yPosition = transform.position.y;
+            yPosition = 0.42f;
+            transform.position = new Vector3(transform.position.x, yPosition, transform.position.z);
+        }
     }
 }
