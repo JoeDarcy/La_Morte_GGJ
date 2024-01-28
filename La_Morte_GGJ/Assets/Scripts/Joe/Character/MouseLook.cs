@@ -26,11 +26,11 @@ public class MouseLook : MonoBehaviour
         transform.Rotate(Vector3.up * mouseX);
 
         // Limit the camera's vertical rotation
-        float currentRotationX = transform.rotation.eulerAngles.x;
-        float newRotationX = Mathf.Clamp(currentRotationX - mouseY, -45.0f, 45.0f);
+        //float currentRotationX = transform.rotation.eulerAngles.x;
+        //float newRotationX = Mathf.Clamp(currentRotationX - mouseY, -90.0f, 90.0f);
 
         // Apply the new rotation to the camera
-        transform.rotation = Quaternion.Euler(newRotationX, transform.rotation.eulerAngles.y, 0.0f);
+        //transform.rotation = Quaternion.Euler(newRotationX, transform.rotation.eulerAngles.y, 0.0f);
 
     }
 }
