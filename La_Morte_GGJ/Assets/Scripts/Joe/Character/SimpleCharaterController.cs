@@ -15,18 +15,10 @@ public class SimpleCharacterController : MonoBehaviour
     public Transform groundCheck = null;
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
-    bool isGrounded = false;
 
     // Update is called once per frame
     void Update()
     {
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-
-        if (isGrounded == true && velocity.y < 0)
-        {
-            velocity.y = -2.0f;
-        }
-
         // Get keyboard input left, right, forward and backwards
         x = Input.GetAxis("Horizontal");
         z = Input.GetAxis("Vertical");
@@ -38,13 +30,6 @@ public class SimpleCharacterController : MonoBehaviour
 
         // Apply movement to character controller component
         controller.Move(move * speed * Time.deltaTime);
-
-        if (Input.GetButtonDown("Jump") && isGrounded == true)
-        {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravity);
-        }
-
-        velocity.y += gravity * Time.deltaTime;
 
         controller.Move(velocity * Time.deltaTime);
     }
